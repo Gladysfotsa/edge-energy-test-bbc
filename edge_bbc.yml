@@ -1,0 +1,23 @@
+---
+name: Edge - BBC
+author: Gladysfotsa <gladysfotsa99@gmail.com>
+description: Benchmarking Edge loading BBC.com for 10 minutes
+
+architecture: Linux
+
+services:
+  edge-container:
+    image: gladysfotsa/edge_energy_image
+    environment:
+      URL_TO_VISIT: "https://www.bbc.com"
+    command: /usr/local/bin/edge-entry.sh
+
+flow:
+  - name: Load BBC in Edge
+    container: edge-container
+    commands:
+      - type: console
+        command: echo "Opening BBC.com in Edge..."
+      - type: console
+        command: sleep 600
+        note: Wait for Edge to render the BBC page for 10 minutes
